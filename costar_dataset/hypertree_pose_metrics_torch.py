@@ -936,7 +936,7 @@ def grasp_acc(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation=0.01, 
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
     # NOTE: If the below does not work, try y_true_xyz_aaxyz_nsc.shape[0]
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -962,7 +962,7 @@ def grasp_acc_5mm_7_5deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_transla
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -988,7 +988,7 @@ def grasp_acc_1cm_15deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translat
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1013,7 +1013,7 @@ def grasp_acc_2cm_30deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translat
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1038,7 +1038,7 @@ def grasp_acc_4cm_60deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translat
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1063,7 +1063,7 @@ def grasp_acc_8cm_120deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_transla
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1088,7 +1088,7 @@ def grasp_acc_16cm_240deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_transl
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1113,7 +1113,7 @@ def grasp_acc_32cm_360deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_transl
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1138,7 +1138,7 @@ def grasp_acc_64cm_360deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_transl
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1163,7 +1163,7 @@ def grasp_acc_128cm_360deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_trans
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1188,7 +1188,7 @@ def grasp_acc_256cm_360deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_trans
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1213,7 +1213,7 @@ def grasp_acc_512cm_360deg(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_trans
     #     [tf.float32], stateful=False,
     #     name='py_func/grasp_accuracy_xyz_aaxyz_nsc_batch')
     filter_result = grasp_accuracy_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc, max_translation, max_rotation)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1230,7 +1230,7 @@ def cart_error(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc):
     #     [tf.float32], stateful=False,
     #     name='py_func/absolute_cart_distance_xyz_aaxyz_nsc_batch')
     filter_result = absolute_cart_distance_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 
@@ -1247,7 +1247,7 @@ def angle_error(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc):
     #     [tf.float32], stateful=False,
     #     name='py_func/absolute_angle_distance_xyz_aaxyz_nsc_batch')
     filter_result = absolute_angle_distance_xyz_aaxyz_nsc_batch(y_true_xyz_aaxyz_nsc, y_pred_xyz_aaxyz_nsc)
-    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.size()[0])
+    np.reshape(filter_result, y_true_xyz_aaxyz_nsc.shape[0])
     return filter_result
 
 

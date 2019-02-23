@@ -307,7 +307,7 @@ def encode_action_and_images(
     action_labels = np.array(action_labels)
     init_images = preprocess_numpy_input(np.array(init_images, dtype=np.float32))
     current_images = preprocess_numpy_input(np.array(current_images, dtype=np.float32))
-    poses = np.array(poses)
+    poses = np.array(poses, dtype=np.float32)
 
     # print('poses shape: ' + str(poses.shape))
     encoded_poses = hypertree_pose_metrics.batch_encode_xyz_qxyzw_to_xyz_aaxyz_nsc(
@@ -953,9 +953,9 @@ class CostarBlockStackingDataset(Dataset):
                 print('Error: Skipping file due to IO error when opening ' + example_filename + ': ' + str(ex))
 
             action_labels = np.array(action_labels)
-            init_images = preprocess_numpy_input(np.array(init_images, dtype=np.float32))
-            current_images = preprocess_numpy_input(np.array(current_images, dtype=np.float32))
-            poses = np.array(poses)
+            # init_images = preprocess_numpy_input(np.array(init_images, dtype=np.float32))
+            # current_images = preprocess_numpy_input(np.array(current_images, dtype=np.float32))
+            # poses = np.array(poses)
 
             # encoded_goal_pose = None
             # print('encoded poses shape: ' + str(encoded_poses.shape))
@@ -1034,7 +1034,7 @@ if __name__ == "__main__":
     # print(filenames)
     # filenames_new = inference_mode_gen(filenames)
     costar_dataset = CostarBlockStackingDataset(
-        filenames, verbose=1,
+        filenames, verbose=0,
         output_shape=output_shape,
         label_features_to_extract='grasp_goal_xyz_aaxyz_nsc_8',
         # data_features_to_extract=['current_xyz_aaxyz_nsc_8'],
@@ -1044,16 +1044,21 @@ if __name__ == "__main__":
     generator = DataLoader(costar_dataset, batch_size=128, shuffle=True, num_workers=1)
     print("Length of the dataset: {}. Length of the loader: {}.".format(len(costar_dataset), len(generator)))
 
+    i = 0
     for generator_output in generator:
-        print("-------------------op")
+        print("-------------------op {}".format(i))
+        i += 1
         x, y = generator_output
         print(x.shape)
         print(y.shape)
 
-        for i, data in enumerate(x):
-            print("x[{}]: ".format(i) + str(data.shape))
+        # for i, data in enumerate(x):
+        #     print("x[{}]: ".format(i) + str(data.shape))
 
-        for i, data in enumerate(y):
-            print("y[{}]: ".format(i) + str(data.shape))
+        assert np.all(x[:, :6, :, :] <= 1) and np.all(x[:, :6, :, :] >= -1), "img assertion failed for i={}".format(i)
+        assert not np.any(np.isnan(x[:, 6:, :, :])), "vector assertion failed for i={}".format(i)
+
+        # for i, data in enumerate(y):
+        #     print("y[{}]: ".format(i) + str(data.shape))
 
         print("-------------------")
