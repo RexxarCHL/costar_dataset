@@ -71,11 +71,9 @@ def tile_vector_as_image_channels_np(vector_op, image_shape):
     # input vector shape
     ivs = np.shape(vector_op)
     # reshape the vector into a single pixel
-    # vector_pixel_shape = [ivs[0], 1, 1, ivs[1]]
     vector_pixel_shape = [ivs[0], ivs[1], 1, 1]
     vector_op = np.reshape(vector_op, vector_pixel_shape)
     # tile the pixel into a full image
-    # tile_dimensions = [1, image_shape[1], image_shape[2], 1]
     tile_dimensions = [1, 1, image_shape[2], image_shape[3]]
     vector_op = np.tile(vector_op, tile_dimensions)
 
@@ -114,20 +112,15 @@ def concat_unit_meshgrid_np(tensor):
     """
     assert len(tensor.shape) == 4
     # print('tensor shape: ' + str(tensor.shape))
-    # y_size = tensor.shape[1]
-    # x_size = tensor.shape[2]
     y_size = tensor.shape[2]
     x_size = tensor.shape[3]
     max_value = max(x_size, y_size)
     y, x = np.meshgrid(np.arange(y_size),
                        np.arange(x_size),
                        indexing='ij')
-    # assert y.size == x.size and y.size == tensor.shape[1] * tensor.shape[2]
     assert y.size == x.size and y.size == tensor.shape[2] * tensor.shape[3]
     # print('x shape: ' + str(x.shape) + ' y shape: ' + str(y.shape))
     # rescale data and reshape to have the same dimension as the tensor
-    # y = np.reshape(y / max_value, [1, y.shape[0], y.shape[1], 1])
-    # x = np.reshape(x / max_value, [1, x.shape[0], x.shape[1], 1])
     y = np.reshape(y / max_value, [1, 1, y.shape[0], y.shape[1]])
     x = np.reshape(x / max_value, [1, 1, x.shape[0], x.shape[1]])
 
@@ -136,7 +129,6 @@ def concat_unit_meshgrid_np(tensor):
     tile_dimensions = [tensor.shape[0], 1, 1, 1]
     y = np.tile(y, tile_dimensions)
     x = np.tile(x, tile_dimensions)
-    # combined = np.concatenate([tensor, y, x], axis=-1)
     combined = np.concatenate([tensor, y, x], axis=1)
     return combined
 
@@ -1096,37 +1088,6 @@ class CostarBlockStackingDataset(Dataset):
             raise
 
         return batch
-
-
-# def collate_cube(batch):
-#     '''
-#     Collate function for when the data output of the Dataset object is not a mega cube.
-
-#     When single_batch_cube=True, the output shape of the Dataset object will be, for example, (57, 224, 224)
-#     Then, the user can use the default collate function of pyTorch DataLoader to form a batch of batch_size (B) with
-#      shape (B, 57, 224, 224)
-
-#     However, it's more efficient to do the mega cube formation in batch using numpy.
-#     This is also what the loader does in the Tensorflow version of this code.
-#     When single_batch_cube=False, the output of the Dataset object will be a list of length B, with each object in
-#      this list being a list of (img_0, img_n, vector).
-#     This function would convert the images and vector into np stacks, and process the stacks into a mega cube.
-
-#     Note that, since it is impossible to determine what the data_features_to_extract argument was for the Dataset object,
-#      unit mesh grid will always be added to the megacube. 
-#      The channel for the output data may increase 2 compared to when single_batch_cube=True as a result.
-#     '''
-#     data, targets = zip(*batch)
-
-#     # data is a list of length batch_size, and each element in this list is a list of (img_0, img_n, vector)
-#     image_0 = np.array([img[0] for img in data])
-#     image_n = np.array([img[1] for img in data])
-#     vector = np.array([img[2] for img in data])
-
-#     data = concat_images_with_tiled_vector_np([image_0, image_n], vector)
-#     data = concat_unit_meshgrid_np(data)
-
-#     return torch.tensor(data), torch.tensor(targets)
 
 
 if __name__ == "__main__":
